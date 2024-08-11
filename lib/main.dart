@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pettodo/splash_screen.dart';
+import 'package:pettodo/features/app/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());

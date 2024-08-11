@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pettodo/sign_up.dart';
-import 'package:pettodo/text_field.dart';
+import 'package:pettodo/features/user_auth/presentation/pages/sign_up.dart';
+import 'package:pettodo/features/user_auth/presentation/widgets/text_field.dart';
 
-import 'button.dart';
+import '../widgets/button.dart';
 
 class LogInScreen extends StatelessWidget {
   LogInScreen({super.key});
@@ -164,7 +164,7 @@ class LogInScreen extends StatelessWidget {
                                   reverseTransitionDuration: Duration.zero));
                         },
                         child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text('New to pettodo?',
                                 style: TextStyle(

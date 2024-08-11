@@ -3,8 +3,8 @@
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 
-import "log_in.dart";
-import "progress_bar.dart";
+import "../user_auth/presentation/pages/log_in.dart";
+import "../user_auth/presentation/widgets/progress_bar.dart";
 
 
 class SplashScreen extends StatefulWidget {
