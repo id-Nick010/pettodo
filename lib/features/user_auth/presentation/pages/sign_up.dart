@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pettodo/features/user_auth/presentation/pages/log_in.dart';
 import 'package:pettodo/features/user_auth/presentation/widgets/text_field.dart';
 
-import '../widgets/button.dart';
+import '../widgets/button.dart'; //widget import
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({super.key});
