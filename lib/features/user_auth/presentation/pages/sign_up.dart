@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:pettodo/log_in.dart';
-import 'package:pettodo/text_field.dart';
+import 'package:pettodo/features/user_auth/presentation/pages/log_in.dart';
+import 'package:pettodo/features/user_auth/presentation/widgets/text_field.dart';
 
-import 'button.dart';
+import '../widgets/button.dart'; //widget import
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({super.key});
 
   //text editing controllers
+  final emailController = TextEditingController();
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -105,7 +106,7 @@ class SignUpScreen extends StatelessWidget {
                     const SizedBox(height: 50), //space
 
                     MyTextField(
-                        controller: usernameController,
+                        controller: emailController,
                         hintText: 'Email',
                         obscureText: false,
                         hoverColor: 0XFFFECB66),
@@ -150,7 +151,7 @@ class SignUpScreen extends StatelessWidget {
                                   reverseTransitionDuration: Duration.zero));
                         },
                         child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text('Already have an account?',
                                 style: TextStyle(
