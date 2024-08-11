@@ -1,5 +1,8 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pettodo/splash_screen.dart';
 
 void main() {
@@ -14,8 +17,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
         overlays: [SystemUiOverlay.bottom]);
-    return const MaterialApp(
+    return MaterialApp(
         debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          textTheme: GoogleFonts.latoTextTheme(
+            Theme.of(context).textTheme
+          ),
+        ),
         home: SplashScreen()); //call yun splash screen
   }
 }

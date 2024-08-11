@@ -2,8 +2,10 @@
 
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
-import "package:percent_indicator/linear_percent_indicator.dart";
-import "package:pettodo/log_in.dart";
+
+import "log_in.dart";
+import "progress_bar.dart";
+
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,16 +16,17 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
+      late double percentage = 0.0;
+    
   @override
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-
-    // Future.delayed(const Duration(seconds: 3), () {
-    //   Navigator.of(context).pushReplacement(
-    //     MaterialPageRoute(builder: (context) => const LogInScreen()),
-    //   );
-    // });
+    Future.delayed(const Duration(seconds: 3), () {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => LogInScreen()),
+      );
+    });
   }
 
   @override
@@ -38,33 +41,26 @@ class _SplashScreenState extends State<SplashScreen>
     return Scaffold(
       body: Container(
           width: double.infinity,
-          color: const Color(0xFFFFFAF0), // Set background color to white
+          color: const Color(0xFFFFFAF0), // Set background color to whitish yellow
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             Image(
-              image: AssetImage('assets/logo-light.png'),
-              width: 296,
-              height: 297,
-              fit: BoxFit.fill,
-            ),
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Text('Make sure to finish your tasks for your pets!',
+                image: AssetImage('assets/logo-light.png'),
+                width: 296,
+                height: 297),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center, 
+              children: [
+                const SizedBox(height: 20), //space
+                Text('Make sure to finish your tasks for your pets!',
                   style: TextStyle(
-                    color: Color(0XFF2B2B2E),
-                    fontFamily: 'Lato',
-                    fontSize: 12,
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w500,
-                    height: 1.0,
-                  )),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: Color(0XFF2B2B2E)
+                  )
+                ),
             ]),
-            Padding(
-                padding: EdgeInsets.all(50.0),
-                child: LinearPercentIndicator(
-                    lineHeight: 25.0,
-                    percent: 1,
-                    progressColor: Color(0XFFAED6B8),
-                    backgroundColor: Color(0xFFFFFAF0),
-                    width: 140))
+            const SizedBox(height: 20), //space
+            ProgressBar(width: 200, height: 20, progress: percentage)
           ])),
     );
   }

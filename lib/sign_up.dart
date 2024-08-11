@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:pettodo/sign_up.dart';
+import 'package:pettodo/log_in.dart';
 import 'package:pettodo/text_field.dart';
 
 import 'button.dart';
 
-class LogInScreen extends StatelessWidget {
-  LogInScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  SignUpScreen({super.key});
 
   //text editing controllers
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
-  // log user in method
-  void logUserIn() {}
+  // sign user in method
+  void signUserIn() {}
 
   @override
   Widget build(BuildContext context) {
@@ -39,27 +39,6 @@ class LogInScreen extends StatelessWidget {
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: <Widget>[
-                                Container(
-                                    height: 50,
-                                    width: 100,
-                                    decoration: BoxDecoration(
-                                      color: const Color(0XFFAED6B8),
-                                      borderRadius: BorderRadius.circular(50),
-                                      border: Border.all(
-                                          color: const Color(0XFF2B2B2E),
-                                          width: 1.8),
-                                    ),
-                                    child: const Center(
-                                      child: Text(
-                                        "Log In",
-                                        style: TextStyle(
-                                          color: Color(0XFF2B2B2E),
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18,
-                                        ),
-                                      ),
-                                    )),
-                                const SizedBox(width: 5), //space
                                 GestureDetector(
                                   onTap: () {
                                     Navigator.push(
@@ -67,7 +46,7 @@ class LogInScreen extends StatelessWidget {
                                         PageRouteBuilder(
                                             pageBuilder: (context, animation1,
                                                     animation2) =>
-                                                SignUpScreen(),
+                                                LogInScreen(),
                                             transitionDuration: Duration.zero,
                                             reverseTransitionDuration:
                                                 Duration.zero));
@@ -80,14 +59,36 @@ class LogInScreen extends StatelessWidget {
                                       ),
                                       child: const Center(
                                         child: Text(
-                                          "Sign Up",
+                                          "Log In",
                                           style: TextStyle(
                                             color: Color(0XFF2B2B2E),
+                                            fontWeight: FontWeight.bold,
                                             fontSize: 18,
                                           ),
                                         ),
                                       )),
                                 ),
+                                const SizedBox(width: 5), //space
+                                Container(
+                                    height: 50,
+                                    width: 100,
+                                    decoration: BoxDecoration(
+                                      color: const Color(0XFFFECB66),
+                                      borderRadius: BorderRadius.circular(50),
+                                      border: Border.all(
+                                          color: const Color(0XFF2B2B2E),
+                                          width: 1.8),
+                                    ),
+                                    child: const Center(
+                                      child: Text(
+                                        "Sign Up",
+                                        style: TextStyle(
+                                          color: Color(0XFF2B2B2E),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                    )),
                                 const SizedBox(height: 50, width: 10)
                               ]),
                         ),
@@ -95,26 +96,27 @@ class LogInScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 70), //space
 
-                    const Text('Welcome!',
+                    const Text('Create Account',
                         style: TextStyle(
                             fontSize: 48,
                             fontWeight: FontWeight.w700,
                             color: Color(0XFF2B2B2E))),
 
-                    const Text('Your pet is waiting for you',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            color: Color(0XFF2B2B2E))),
-
                     const SizedBox(height: 50), //space
 
                     MyTextField(
-                      controller: usernameController,
-                      hintText: 'Username',
-                      obscureText: false,
-                      hoverColor: 0XFFAED6B8,
-                    ),
+                        controller: usernameController,
+                        hintText: 'Email',
+                        obscureText: false,
+                        hoverColor: 0XFFFECB66),
+
+                    const SizedBox(height: 40), //space
+
+                    MyTextField(
+                        controller: usernameController,
+                        hintText: 'Username',
+                        obscureText: false,
+                        hoverColor: 0XFFFECB66),
 
                     const SizedBox(height: 40), //space
 
@@ -122,30 +124,14 @@ class LogInScreen extends StatelessWidget {
                         controller: passwordController,
                         hintText: 'Password',
                         obscureText: true,
-                        hoverColor: 0XFFAED6B8),
-
-                    const SizedBox(height: 20), //space
-
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 50.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text('Forgot Password?',
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  color: Color(0XFF2B2B2E),
-                                  decoration: TextDecoration.underline)),
-                        ],
-                      ),
-                    ),
+                        hoverColor: 0XFFFECB66),
 
                     const SizedBox(height: 50), //space
 
                     MyButton(
-                      onTap: logUserIn,
-                      text: "Log In",
-                      colorButton: 0XFFAED6B8,
+                      onTap: signUserIn,
+                      text: "Sign Up",
+                      colorButton: 0XFFFECB66,
                     ),
 
                     const SizedBox(height: 70), //space
@@ -159,14 +145,14 @@ class LogInScreen extends StatelessWidget {
                               PageRouteBuilder(
                                   pageBuilder:
                                       (context, animation1, animation2) =>
-                                          SignUpScreen(),
+                                          LogInScreen(),
                                   transitionDuration: Duration.zero,
                                   reverseTransitionDuration: Duration.zero));
                         },
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text('New to pettodo?',
+                            Text('Already have an account?',
                                 style: TextStyle(
                                     fontSize: 14,
                                     color: Color(0XFF2B2B2E),
