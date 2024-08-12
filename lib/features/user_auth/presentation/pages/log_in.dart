@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pettodo/features/main_pages/pomo_page.dart';
 import 'package:pettodo/features/user_auth/presentation/pages/sign_up.dart';
 import 'package:pettodo/features/user_auth/presentation/widgets/text_field.dart';
 
@@ -143,7 +144,18 @@ class LogInScreen extends StatelessWidget {
                     const SizedBox(height: 50), //space
 
                     MyButton(
-                      onTap: logUserIn,
+                      // onTap: logUserIn(context),
+                      onTap: () {
+                        //this is just temporary
+                        Navigator.push(
+                            context,
+                            PageRouteBuilder(
+                                pageBuilder:
+                                    (context, animation1, animation2) =>
+                                        const PomoPage(),
+                                transitionDuration: Duration.zero,
+                                reverseTransitionDuration: Duration.zero));
+                      },
                       text: "Log In",
                       colorButton: 0XFFAED6B8,
                     ),
