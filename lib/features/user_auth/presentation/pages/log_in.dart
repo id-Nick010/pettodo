@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pettodo/features/main_pages/pomo_page.dart';
+import 'package:pettodo/features/main_pages/main_screen.dart';
 import 'package:pettodo/features/user_auth/presentation/pages/sign_up.dart';
 import 'package:pettodo/features/user_auth/presentation/widgets/text_field.dart';
 
@@ -152,7 +152,7 @@ class LogInScreen extends StatelessWidget {
                             PageRouteBuilder(
                                 pageBuilder:
                                     (context, animation1, animation2) =>
-                                        const PomoPage(),
+                                        const MainScreen(),
                                 transitionDuration: Duration.zero,
                                 reverseTransitionDuration: Duration.zero));
                       },
