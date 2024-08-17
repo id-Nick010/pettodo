@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "393155976013",
+    "project_id": "pettodo-6bab8",
+    "storage_bucket": "pettodo-6bab8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:393155976013:android:4cc8ba0a3794064b857504",
+        "android_client_info": {
+          "package_name": "com.example.pettodo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIEXb0p7Id87EyqGtgKt09b-aKlMw2-fs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
