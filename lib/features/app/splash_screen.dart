@@ -3,12 +3,12 @@
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 
-import "../user_auth/presentation/pages/log_in.dart";
 import "../user_auth/presentation/widgets/progress_bar.dart";
 
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  final Widget? child;
+  const SplashScreen({super.key, this.child});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -21,10 +21,20 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 3),
+    );
+    _animation = Tween<double>(begin: 0, end: 1).animate(_animationController)
+      ..addListener(() {
+        setState(() {});
+      });
+
+    _animationController.forward();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => LogInScreen()),
+        MaterialPageRoute(builder: (context) => widget.child!),
       );
     });
   }
