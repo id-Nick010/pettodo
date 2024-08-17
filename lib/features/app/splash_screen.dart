@@ -16,7 +16,8 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
-      late double percentage = 0.0;
+  late AnimationController _animationController;
+  late Animation<double> _animation;
     
   @override
   void initState() {
@@ -32,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     _animationController.forward();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 5), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => widget.child!),
       );
@@ -43,6 +44,7 @@ class _SplashScreenState extends State<SplashScreen>
   void dispose() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
         overlays: SystemUiOverlay.values);
+    _animationController.dispose();
     super.dispose();
   }
 
@@ -70,7 +72,7 @@ class _SplashScreenState extends State<SplashScreen>
                 ),
             ]),
             const SizedBox(height: 20), //space
-            ProgressBar(width: 200, height: 20, progress: percentage)
+            ProgressBar(width: 200, height: 20, progress: _animation.value)
           ])),
     );
   }
