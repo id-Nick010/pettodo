@@ -5,7 +5,6 @@ import "package:flutter/services.dart";
 
 import "../user_auth/presentation/widgets/progress_bar.dart";
 
-
 class SplashScreen extends StatefulWidget {
   final Widget? child;
   const SplashScreen({super.key, this.child});
@@ -18,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _animation;
-    
+
   @override
   void initState() {
     super.initState();
@@ -53,23 +52,20 @@ class _SplashScreenState extends State<SplashScreen>
     return Scaffold(
       body: Container(
           width: double.infinity,
-          color: const Color(0xFFFFFAF0), // Set background color to whitish yellow
+          color:
+              const Color(0xFFFFFAF0), // Set background color to whitish yellow
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             Image(
                 image: AssetImage('assets/logo-light.png'),
                 width: 296,
                 height: 297),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center, 
-              children: [
-                const SizedBox(height: 20), //space
-                Text('Make sure to finish your tasks for your pets!',
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              const SizedBox(height: 20), //space
+              Text('Make sure to finish your tasks for your pets!',
                   style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    color: Color(0XFF2B2B2E)
-                  )
-                ),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      color: Color(0XFF2B2B2E))),
             ]),
             const SizedBox(height: 20), //space
             ProgressBar(width: 200, height: 20, progress: _animation.value)
