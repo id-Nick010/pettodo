@@ -21,7 +21,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool _isSignUp = false;
   bool _isGSignUp = false;
   final FirebaseAuthService _auth = FirebaseAuthService();
-    final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   //text editing controllers
   TextEditingController emailController = TextEditingController();
@@ -38,6 +38,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     super.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: const Color(0XFFFFFAF0),
@@ -156,11 +157,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                     MyButton(
                       onTap: signUserUp,
-                      text: _isSignUp ? "Loading...":"Sign Up",
+                      text: _isSignUp ? "Loading..." : "Sign Up",
                       colorButton: 0XFFFECB66,
                       onLoading: _isSignUp,
                     ),
-                    
+
                     const SizedBox(height: 10), //space
 
                     MyIconButton(
@@ -211,12 +212,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
       _isSignUp = true;
     });
 
-    String username = usernameController.text;
+    // String username = usernameController.text;
     String email = emailController.text;
     String password = passwordController.text;
 
     User? user = await _auth.signUpwithEmailandPassword(email, password);
-    
+
     setState(() {
       _isSignUp = false;
     });
@@ -232,16 +233,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
       }
     }
   }
+
   googleSignIn() async {
-    final GoogleSignIn _googleSignIn = GoogleSignIn();
-    
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+
     setState(() {
       _isGSignUp = true;
     });
 
     try {
       final GoogleSignInAccount? googleSignInAccount =
-          await _googleSignIn.signIn();
+          await googleSignIn.signIn();
 
       if (googleSignInAccount != null) {
         final GoogleSignInAuthentication googleSignInAuthentication =
