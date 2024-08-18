@@ -1,19 +1,41 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pettodo/features/main_pages/main_screen.dart';
 import 'package:pettodo/features/user_auth/presentation/pages/sign_up.dart';
 import 'package:pettodo/features/user_auth/presentation/widgets/text_field.dart';
+import 'package:pettodo/global/common/toast.dart';
 
+import '../../firebase_auth_implementation/firebase_auth_services.dart';
 import '../widgets/button.dart';
+import '../widgets/icon_button.dart';
 
-class LogInScreen extends StatelessWidget {
+class LogInScreen extends StatefulWidget {
   LogInScreen({super.key});
 
-  //text editing controllers
-  final usernameController = TextEditingController();
-  final passwordController = TextEditingController();
+  @override
+  State<LogInScreen> createState() => _LogInScreenState();
+}
 
-  // log user in method
-  void logUserIn() {}
+class _LogInScreenState extends State<LogInScreen> {
+  //text editing controllers
+  bool _isLogin = false;
+  bool _isGLogin = false;
+  final FirebaseAuthService _auth = FirebaseAuthService();
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
+  //text editing controllers
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +90,7 @@ class LogInScreen extends StatelessWidget {
                                         PageRouteBuilder(
                                             pageBuilder: (context, animation1,
                                                     animation2) =>
-                                                SignUpScreen(),
+                                                const SignUpScreen(),
                                             transitionDuration: Duration.zero,
                                             reverseTransitionDuration:
                                                 Duration.zero));
@@ -94,7 +116,7 @@ class LogInScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 70), //space
+                    const SizedBox(height: 50), //space
 
                     const Text('Welcome!',
                         style: TextStyle(
@@ -111,19 +133,21 @@ class LogInScreen extends StatelessWidget {
                     const SizedBox(height: 50), //space
 
                     MyTextField(
-                      controller: usernameController,
-                      hintText: 'Username',
+                      controller: emailController,
+                      hintText: 'Email',
                       obscureText: false,
                       hoverColor: 0XFFAED6B8,
+                      isPasswordField: false,
                     ),
 
-                    const SizedBox(height: 40), //space
+                    const SizedBox(height: 30), //space
 
                     MyTextField(
                         controller: passwordController,
                         hintText: 'Password',
                         obscureText: true,
-                        hoverColor: 0XFFAED6B8),
+                        hoverColor: 0XFFAED6B8,
+                        isPasswordField: true),
 
                     const SizedBox(height: 20), //space
 
@@ -158,9 +182,20 @@ class LogInScreen extends StatelessWidget {
                       },
                       text: "Log In",
                       colorButton: 0XFFAED6B8,
+                      onLoading: _isLogin,
                     ),
 
-                    const SizedBox(height: 70), //space
+                    const SizedBox(height: 10), //space
+
+                    MyIconButton(
+                      onTap: googleSignIn,
+                      text: "Sign In with Google",
+                      colorButton: 0XFF2B2B2E,
+                      iconname: FontAwesomeIcons.google,
+                      onLoading: _isGLogin,
+                    ),
+
+                    const SizedBox(height: 30), //space
 
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 50.0),
@@ -171,7 +206,7 @@ class LogInScreen extends StatelessWidget {
                               PageRouteBuilder(
                                   pageBuilder:
                                       (context, animation1, animation2) =>
-                                          SignUpScreen(),
+                                          const SignUpScreen(),
                                   transitionDuration: Duration.zero,
                                   reverseTransitionDuration: Duration.zero));
                         },
@@ -193,5 +228,61 @@ class LogInScreen extends StatelessWidget {
             ),
           ),
         ));
+  }
+
+  void logUserIn() async {
+    setState(() {
+      _isLogin = true;
+    });
+
+    String email = emailController.text;
+    String password = passwordController.text;
+
+    User? user = await _auth.signInWithEmailAndPassword(email, password);
+
+    setState(() {
+      _isLogin = false;
+    });
+
+    if (user != null) {
+      if (kDebugMode) {
+        print("User is successfully signedIn");
+      }
+      Navigator.pushNamed(context, "/home");
+    } else {
+      if (kDebugMode) {
+        print("Some error happened");
+      }
+    }
+  }
+
+  googleSignIn() async {
+    setState(() {
+      _isGLogin = true;
+    });
+    final GoogleSignIn _googleSignIn = GoogleSignIn();
+
+    try {
+      final GoogleSignInAccount? googleSignInAccount =
+          await _googleSignIn.signIn();
+
+      if (googleSignInAccount != null) {
+        final GoogleSignInAuthentication googleSignInAuthentication =
+            await googleSignInAccount.authentication;
+
+        final AuthCredential credential = GoogleAuthProvider.credential(
+          idToken: googleSignInAuthentication.idToken,
+          accessToken: googleSignInAuthentication.accessToken,
+        );
+
+        await _firebaseAuth.signInWithCredential(credential);
+        Navigator.pushNamed(context, "/home");
+      }
+    } catch (e) {
+      showToast(message: "some error occured $e");
+    }
+    setState(() {
+      _isGLogin = false;
+    });
   }
 }

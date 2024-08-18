@@ -4,12 +4,14 @@ class MyButton extends StatelessWidget {
   final Function()? onTap;
   final String text;
   final int colorButton;
+  final bool onLoading;
 
   const MyButton({
     super.key,
     required this.onTap,
     required this.text,
     required this.colorButton,
+    required this.onLoading,
   });
 
   @override
@@ -25,8 +27,9 @@ class MyButton extends StatelessWidget {
           border: Border.all(color: const Color(0XFF2B2B2E), width: 1.8),
         ),
         child: Center(
-          child: Text(
-            text,
+          child: onLoading 
+          ? const SizedBox(width: 26, height: 26, child: CircularProgressIndicator(color: Color(0XFF2B2B2E)),) 
+          :Text(text,
             style: const TextStyle(
               color: Color(0XFF2B2B2E),
               fontWeight: FontWeight.bold,
