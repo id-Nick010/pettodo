@@ -3,7 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:pettodo/features/main_pages/main_screen.dart';
 import 'package:pettodo/features/user_auth/presentation/pages/sign_up.dart';
 import 'package:pettodo/features/user_auth/presentation/widgets/text_field.dart';
 import 'package:pettodo/global/common/toast.dart';
@@ -168,18 +167,7 @@ class _LogInScreenState extends State<LogInScreen> {
                     const SizedBox(height: 50), //space
 
                     MyButton(
-                      // onTap: logUserIn(context),
-                      onTap: () {
-                        //this is just temporary
-                        Navigator.push(
-                            context,
-                            PageRouteBuilder(
-                                pageBuilder:
-                                    (context, animation1, animation2) =>
-                                        const MainScreen(),
-                                transitionDuration: Duration.zero,
-                                reverseTransitionDuration: Duration.zero));
-                      },
+                      onTap: logUserIn,
                       text: "Log In",
                       colorButton: 0XFFAED6B8,
                       onLoading: _isLogin,
@@ -200,6 +188,7 @@ class _LogInScreenState extends State<LogInScreen> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 50.0),
                       child: InkWell(
+                        // onTap: logUserIn,
                         onTap: () {
                           Navigator.push(
                               context,
