@@ -9,7 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 // import 'package:logger/logger.dart';
 import 'package:pettodo/features/app/splash_screen.dart';
-import 'package:pettodo/features/user_auth/presentation/pages/home.dart';
+import 'package:pettodo/features/main_pages/main_screen.dart';
 import 'package:pettodo/features/user_auth/presentation/pages/log_in.dart';
 import 'package:pettodo/features/user_auth/presentation/pages/sign_up.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
             ),
         '/login': (context) => LogInScreen(),
         '/signUp': (context) => SignUpScreen(),
-        '/home': (context) => HomeScreen(),
+        '/home': (context) => MainScreen(),
       },
     );
   }
