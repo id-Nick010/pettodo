@@ -70,7 +70,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         PageRouteBuilder(
                                             pageBuilder: (context, animation1,
                                                     animation2) =>
-                                                LogInScreen(),
+                                                const LogInScreen(),
                                             transitionDuration: Duration.zero,
                                             reverseTransitionDuration:
                                                 Duration.zero));
@@ -183,7 +183,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               PageRouteBuilder(
                                   pageBuilder:
                                       (context, animation1, animation2) =>
-                                          LogInScreen(),
+                                          const LogInScreen(),
                                   transitionDuration: Duration.zero,
                                   reverseTransitionDuration: Duration.zero));
                         },
@@ -226,6 +226,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
       if (kDebugMode) {
         print("User is successfully created");
       }
+
+      if (!mounted) return;
       Navigator.pushNamed(context, "/home");
     } else {
       if (kDebugMode) {
@@ -255,6 +257,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         );
 
         await _firebaseAuth.signInWithCredential(credential);
+
+        if (!mounted) return;
         Navigator.pushNamed(context, "/home");
       }
     } catch (e) {
