@@ -13,7 +13,7 @@ import '../widgets/button.dart';
 import '../widgets/icon_button.dart';
 
 class LogInScreen extends StatefulWidget {
-  LogInScreen({super.key});
+  const LogInScreen({super.key});
 
   @override
   State<LogInScreen> createState() => _LogInScreenState();
@@ -244,6 +244,8 @@ class _LogInScreenState extends State<LogInScreen> {
       _isLogin = false;
     });
 
+    if (!mounted) return;
+
     if (user != null) {
       if (kDebugMode) {
         print("User is successfully signedIn");
@@ -260,11 +262,11 @@ class _LogInScreenState extends State<LogInScreen> {
     setState(() {
       _isGLogin = true;
     });
-    final GoogleSignIn _googleSignIn = GoogleSignIn();
+    final GoogleSignIn googleSignIn = GoogleSignIn();
 
     try {
       final GoogleSignInAccount? googleSignInAccount =
-          await _googleSignIn.signIn();
+          await googleSignIn.signIn();
 
       if (googleSignInAccount != null) {
         final GoogleSignInAuthentication googleSignInAuthentication =
@@ -276,6 +278,8 @@ class _LogInScreenState extends State<LogInScreen> {
         );
 
         await _firebaseAuth.signInWithCredential(credential);
+        // Check if the widget is still mounted before using the context
+        if (!mounted) return;
         Navigator.pushNamed(context, "/home");
       }
     } catch (e) {

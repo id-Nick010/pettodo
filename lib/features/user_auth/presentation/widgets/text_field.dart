@@ -16,7 +16,7 @@ class MyTextField extends StatefulWidget {
       required this.isPasswordField});
 
   @override
-  _MyTextFieldWidgetState createState() => _MyTextFieldWidgetState();
+  State<MyTextField> createState() => _MyTextFieldWidgetState();
 }
 
 class _MyTextFieldWidgetState extends State<MyTextField> {
