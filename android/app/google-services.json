@@ -2,7 +2,7 @@
   "project_info": {
     "project_number": "393155976013",
     "project_id": "pettodo-6bab8",
-    "storage_bucket": "pettodo-6bab8.appspot.com"
+    "storage_bucket": "pettodo-6bab8.firebasestorage.app"
   },
   "client": [
     {
@@ -12,7 +12,20 @@
           "package_name": "com.example.pettodo"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "393155976013-r58rpqp01pk0c5p7tmt5u7furpprh6pu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pettodo",
+            "certificate_hash": "60d9eda770ec04a786c600bed66527676d61f0e3"
+          }
+        },
+        {
+          "client_id": "393155976013-mss6f63at4lfgnasam8in0g2klnirhj8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBIEXb0p7Id87EyqGtgKt09b-aKlMw2-fs"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "393155976013-mss6f63at4lfgnasam8in0g2klnirhj8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "393155976013-s2qu6d1i0fpfnj3fjsst6gpno646s074.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.pettodo"
+              }
+            }
+          ]
         }
       }
     }
